@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTodo } from '../context';
+import { TodoItem } from './TodoItem';
 
 export const TodoList = () => {
   const state = useTodo();
@@ -7,7 +8,7 @@ export const TodoList = () => {
   return (
     <ul>
       {state.map((item) => (
-        <li key={item.id}>{item.title}</li>
+        <TodoItem key={item.key} item={item} />
       ))}
     </ul>
   );

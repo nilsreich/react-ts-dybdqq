@@ -10,23 +10,19 @@ export const ACTIONS = {
   INCREMENT: 'increment',
   DECREMENT: 'decrement',
   RANDOM: 'random',
-  USERNAME: 'username',
 };
 
 // Reducer
-const reducer = (draft, action) => {
+const reducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.RANDOM:
-      draft.number = Math.random();
+      state.number = Math.random();
       break;
     case ACTIONS.INCREMENT:
-      draft.count++;
+      state.count++;
       break;
     case ACTIONS.DECREMENT:
-      draft.count--;
-      break;
-    case ACTIONS.USERNAME:
-      draft.name = action.payload.name;
+      state.count--;
       break;
   }
 };
@@ -34,8 +30,6 @@ export const CounterProvider = ({ children }) => {
   //create ImmerReducer
   const [state, dispatch] = useImmerReducer(reducer, {
     count: 0,
-    number: 0,
-    name: 'nils',
   });
   return (
     <CounterContext.Provider value={state}>

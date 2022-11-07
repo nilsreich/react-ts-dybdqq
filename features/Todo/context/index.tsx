@@ -14,6 +14,7 @@ export const ACTIONS = {
 
 // Reducer
 const reducer = (draft, action) => {
+  let index = null;
   switch (action.type) {
     case ACTIONS.ADD:
       draft.push({
@@ -23,11 +24,12 @@ const reducer = (draft, action) => {
       });
       return;
     case ACTIONS.DELETE:
-      draft.count++;
+      index = draft.findIndex((todo) => todo.id === action.id);
+      if (index !== -1) draft.splice(index, 1);
       break;
     case ACTIONS.TOGGLE:
-      const item = draft.find((item) => item.id === action.payload.id);
-      item.done = !item.done;
+      index = draft.findIndex((todo) => todo.id === action.id);
+      if (index !== -1) draft[index].done = true;
       break;
   }
 };
